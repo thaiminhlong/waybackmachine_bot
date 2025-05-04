@@ -4,8 +4,8 @@ import csv
 from datetime import datetime, timezone
 
 ## Constants 
-file_path = r"C:\Users\thaim\Downloads\links.txt"
-outCSVFile = r"C:\Users\thaim\Downloads\link_archived.csv"
+file_path = r"File-Path-Here" ## Example: C:\...\...
+outCSVFile = r"File-Path-Here" ## Example: C:\...\...
 
 ## Read File
 def readFileOfLinks(file_path):
