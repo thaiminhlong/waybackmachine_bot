@@ -10,7 +10,7 @@ outCSVFile = r"File-Path-Here" ## Example: C:\...\...
 ## Read File
 def readFileOfLinks(file_path):
     ListOfLinks = []
-    with open(file_path) as file:
+    with open(file_path) as file: ## Opening the file
         for link in file:
             if link.strip():
                 ListOfLinks.append(link.strip())
@@ -19,7 +19,7 @@ def readFileOfLinks(file_path):
 
 ## Upload Link To Way Back Machine
 def UploadToWayback(link):
-    maxRetry = 5
+    maxRetry = 5 ## Maximum number of retry when the program fail
     trial = 0
     delay = 10
 
@@ -62,15 +62,15 @@ def ResultInCSV(results, file):
 
 ## Main
 def main():
-    List_of_Links = readFileOfLinks(file_path)
+    List_of_Links = readFileOfLinks(file_path) ## Get all links in file
     results = []
 
-    for link in List_of_Links:
-        result = UploadToWayback(link)
-        results.append(result)
-        time.sleep(10)
+    for link in List_of_Links: ## Going through each link
+        result = UploadToWayback(link) ## Upload to WayBackMachine and return result
+        results.append(result) ## Each result get compiled into a list containing result
+        time.sleep(10) ## delay 10 seconds everytime to avoid overload server
     
-    ResultInCSV(results, outCSVFile)
+    ResultInCSV(results, outCSVFile) ## Put result in a structured CSV file
     print(f"Done. See archived results in {outCSVFile}")
 
 
