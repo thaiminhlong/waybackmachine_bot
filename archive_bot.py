@@ -11,7 +11,7 @@ outCSVFile = r"File-Path-Here" ## Example: C:\...\...
 def readFileOfLinks(file_path):
     ListOfLinks = []
     with open(file_path) as file: ## Opening the file
-        for link in file:
+        for link in file: ## Read each line
             if link.strip():
                 ListOfLinks.append(link.strip())
     return ListOfLinks
