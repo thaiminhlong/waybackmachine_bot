@@ -12,22 +12,22 @@ def readFileOfLinks(file_path):
     ListOfLinks = []
     with open(file_path) as file: ## Opening the file
         for link in file: ## Read each line
-            if link.strip():
-                ListOfLinks.append(link.strip())
+            if link.strip(): ## Check empty after stripping leading whitespace
+                ListOfLinks.append(link.strip()) ## Append links into ListofLinks
     return ListOfLinks
 
 
 ## Upload Link To Way Back Machine
 def UploadToWayback(link):
     maxRetry = 5 ## Maximum number of retry when the program fail
-    trial = 0
-    delay = 10
+    trial = 0 ## Starter
+    delay = 10 ## Delaying time
 
-    while trial < maxRetry:
+    while trial < maxRetry: 
         print(f"Attempt {trial+1}: Saving {link} to Way Back Machine")
-        try:
-            upload = requests.get(f"https://web.archive.org/save/{link}", timeout = 60)
-            if upload.status_code == 200:
+        try: ## Trying
+            upload = requests.get(f"https://web.archive.org/save/{link}", timeout = 60) ## Sending GET requests
+            if upload.status_code == 200: ## If succeeds, status code will be 200
                 print(f"{link} has been succesffuly saved")
                 return {"Original Link": link,
                         "WayBackMachine Link": f"https://web.archive.org/save/{link}",
@@ -35,7 +35,7 @@ def UploadToWayback(link):
                         "Status": "Success"}
             else:
                 print(f"{link} did not get saved. Error: {upload.status_code}")
-        except Exception as e:
+        except Exception as e: ## If fails
             print(f"Failing due to {e}")
 
         trial += 1
